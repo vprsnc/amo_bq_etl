@@ -1,16 +1,23 @@
+import os
 from amocrm.v2 import Contact as _Contact
 from amocrm.v2 import Company as _Company
 from amocrm.v2 import Lead as _Lead
 from amocrm.v2 import tokens, custom_field
 
 
+client_id = os.getenv("AMO_CLIENT_ID")
+client_secret = os.getenv("AMO_CLIENT_SECRET")
+subdomain = os.getenv("AMO_SUBDOMAIN")
+redirect_url = os.getenv("AMO_REDIRECT_URI")
+
 tokens.default_token_manager(
-    client_secret="bRLRcyWeSVJMsp6Ny8Mu8cKvkoRF80qlAUKXnP33PzaLuW0EDUzSqRgEUbZHqizX",
-    client_id="d244240e-a192-48ef-a5ce-e6744b0a3b17",
-    subdomain="yastaff",
-    redirect_url="https://yastaff.amocrm.ru/",
-    storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens"),
-)
+    client_id=client_id,
+    client_secret=client_secret,
+    subdomain=subdomain,
+    redirect_url=redirect_url,
+    storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens/")
+    )
+
 # code = ...
 # if code:
 #     tokens.default_token_manager.init(code, skip_error=True)
