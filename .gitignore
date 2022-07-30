@@ -1,3 +1,5 @@
 venv/
 tokens/
 __pycahe__/
+tasks/__pycache__
+dags/__pycache__
