@@ -1,5 +1,6 @@
 venv/
 tokens/
 __pycahe__/
-tasks/__pycache__
-dags/__pycache__
+tasks/__pycache__/
+dags/__pycache__/
+*.pyc
