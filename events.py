@@ -12,6 +12,7 @@ from auth import amo_auth
 
 def get_status_changes(now):
 
+    #test
 
     client_id = os.getenv("AMO_CLIENT_ID")
     client_secret = os.getenv("AMO_CLIENT_SECRET")
