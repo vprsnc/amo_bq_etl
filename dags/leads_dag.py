@@ -8,7 +8,8 @@ from airflow.utils.dates import days_ago
 sys.path.insert(0, "/home/analytics/OddJob/tasks")
 sys.path.insert(0, "/home/analytics/OddJob")
 
-from leads_etl import run_leads_etl
+from leads import store_leads
+from senders import leads_sender
 
 
 default_args = {
@@ -28,10 +29,16 @@ dag = DAG(
         schedule_interval=timedelta(days=1)
         )
 
-run_task = PythonOperator(
-        task_id='leads_etl',
-        python_callable=run_leads_etl,
+get_leads = PythonOperator
+        task_id='get_leads',
+        python_callable=store_leads,
         dag=dag
         )
 
-run_task
+send_leads = PythonOperator(
+        task_id='send_leads',
+        python_callable=leads_sender,
+        dag=dag
+        )
+
+get_leads >> send_leads

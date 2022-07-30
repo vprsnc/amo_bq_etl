@@ -8,7 +8,8 @@ from airflow.utils.dates import days_ago
 sys.path.insert(0, "/home/analytics/OddJob/tasks")
 sys.path.insert(0, "/home/analytics/OddJob")
 
-from events_etl import run_status_changes_etl
+from events.StatusChanges import store_events
+from senders import status_changes_sender
 
 
 default_args = {
@@ -28,10 +29,16 @@ dag = DAG(
         schedule_interval=timedelta(days=1)
         )
 
-run_task = PythonOperator(
-        task_id='status_changes_etl',
-        python_callable=run_status_changes_etl,
+get_status_changes = PythonOperator(
+        task_id='get_status_changes',
+        python_callable=store_events,
         dag=dag
         )
 
-run_task
+send_status_changes = PythonOperator(
+        task_id='send_status_changes',
+        python_callable=status_changes_sender,
+        dag=dag
+)
+
+get_status_changes >> send_status_changes
