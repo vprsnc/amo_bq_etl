@@ -52,7 +52,7 @@ def get_status_changes(now):
     for event in events_dicts:
 
         event["id_status_before"] = event["value_before"][0]["lead_status"]["id"]
-        event["id_pipeline_after"] = event["value_before"][0]["lead_status"]["pipeline_id"]
+        event["id_pipeline_before"] = event["value_before"][0]["lead_status"]["pipeline_id"]
         event["id_status_after"] = event["value_after"][0]["lead_status"]["id"]
         event["id_pipeline_after"] = event["value_after"][0]["lead_status"]["pipeline_id"]
 
