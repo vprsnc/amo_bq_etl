@@ -6,7 +6,9 @@ import pandas as pd
 
 from loguru import logger
 
-def leads_sender(leads):
+def leads_sender():
+
+    leads = pd.read_csv("./temp_data/leads.csv")
 
     client = bq.Client()
 
@@ -21,7 +23,9 @@ def leads_sender(leads):
     logger.info(f"Sent {len(leads)} in {end-start} seconds.")
 
 
-def status_changes_sender(events):
+def status_changes_sender():
+
+    events = pd.read_csv("./temp_data/status_changes.csv")
 
     client = bq.Client()
 

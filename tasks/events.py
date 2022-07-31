@@ -15,10 +15,10 @@ class StatusChanges:
 
      def get_events(now):
      
-         client_id = os.getenv("AMO_CLIENT_ID")
-         client_secret = os.getenv("AMO_CLIENT_SECRET")
-         subdomain = os.getenv("AMO_SUBDOMAIN")
-         redirect_url = os.getenv("AMO_REDIRECT_URI")
+         client_id = os.getenv("AMO_CLIENT_ID_2")
+         client_secret = os.getenv("AMO_CLIENT_SECRET_2")
+         subdomain = os.getenv("AMO_SUBDOMAIN_2")
+         redirect_url = os.getenv("AMO_REDIRECT_URI_2")
      
          tokens.default_token_manager(
              client_id=client_id,
@@ -81,4 +81,4 @@ class StatusChanges:
 
          df = parse_events(events)
 
-         df.to_csv("./temp_data", index=False)
+         df.to_csv("./temp_data/status_changes.csv", index=False)
