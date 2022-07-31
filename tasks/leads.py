@@ -43,6 +43,19 @@ def get_leads(now):
     leads_dicts = []
     for lead in leads:
         leads_dicts.append(lead.__dict__['_data'])
+        try:
+            leads_dicts[counter]["traffic_type"] = lead.tip_traffika.__dict__["value"]
+        except AttributeError:
+            leads_dicts[counter]["traffic_type"] = ""
+        leads_dicts[counter]["city"] = lead.gorod
+        try:
+            leads_dicts[counter]["resource"] = lead.resurs.__dict__["value"]
+        except AttributeError:
+            leads_dicts[counter]["resource"] = ""
+        try:
+            leads_dicts[counter]["package"] = lead.paket.__dict__["value"]
+        except AttributeError:
+            leads_dicts[counter]["package"] = ""
 
     custom_fields_needed = [
         "Дата прихода обращения", "utm_source", "utm_medium", "utm_campaign", 
@@ -69,13 +82,15 @@ def parse_leads(now):
         "_links", "_embedded", "custom_fields_values", "Дата прихода обращения"
        ], axis=1, inplace=True)
 
+
     df["created_at"] = pd.to_datetime(df["created_at"], unit="s")
     df["updated_at"] = pd.to_datetime(df["updated_at"], unit="s")
     df["closed_at"]  = pd.to_datetime(df["closed_at"], unit="s")
 
     df.rename({
         "utm_campaign (2)": "utm_campaign_2",
-        "utm_term (2)": "utm_term_2"
+        "utm_term (2)": "utm_term_2",
+        "price": "budget"
        }, axis=1, inplace=True)
 
     return df
