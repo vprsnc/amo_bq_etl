@@ -27,6 +27,11 @@ class StatusChanges:
              redirect_url=redirect_url,
              storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens/")
              )
+
+         code = os.getenv("CODE_2")
+
+         if code:
+              tokens.default_token_manager.init(code)
      
          _session.mount("https://", HTTPAdapter(max_retries=5))
      
