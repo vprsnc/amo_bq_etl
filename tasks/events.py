@@ -82,3 +82,8 @@ class StatusChanges:
          df = parse_events(events)
 
          df.to_csv("./temp_data/status_changes.csv", index=False)
+
+
+     def cleanup_events():
+
+         os.remove("./temp_data_events.csv")

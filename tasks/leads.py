@@ -105,3 +105,7 @@ def store_leads():
     df = parse_leads(leads)
 
     df.to_csv("./temp_data/leads.csv", index=False)
+
+def cleanup_leads():
+
+    os.remove("./temp_data_leads.csv")

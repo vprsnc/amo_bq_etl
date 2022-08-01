@@ -8,7 +8,7 @@ from airflow.utils.dates import days_ago
 sys.path.insert(0, "/home/analytics/OddJob/tasks")
 sys.path.insert(0, "/home/analytics/OddJob")
 
-from leads import store_leads
+from leads import store_leads, cleanup_leads
 from senders import leads_sender
 
 
@@ -41,4 +41,10 @@ send_leads = PythonOperator(
         dag=dag
         )
 
-get_leads >> send_leads
+cleanup = PythonOperator(
+    task_id = 'clean_up_leads',
+    python_callable=clean_up_leads,
+    dag=dag
+)
+
+get_leads >> send_leads >> cleanup
