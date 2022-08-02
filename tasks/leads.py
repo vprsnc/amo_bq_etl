@@ -111,4 +111,4 @@ def store_leads():
 
 def cleanup_leads():
 
-    os.remove("./temp_data_leads.csv")
+    os.remove("./temp_data/leads.csv")

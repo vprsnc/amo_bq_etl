@@ -91,4 +91,4 @@ class StatusChanges:
 
      def cleanup_events():
 
-         os.remove("./temp_data_events.csv")
+         os.remove("./temp_data/events.csv")

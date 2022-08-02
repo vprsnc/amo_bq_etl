@@ -43,7 +43,7 @@ send_leads = PythonOperator(
 
 cleanup = PythonOperator(
     task_id = 'clean_up_leads',
-    python_callable=clean_up_leads,
+    python_callable=cleanup_leads,
     dag=dag
 )
 
