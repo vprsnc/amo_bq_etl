@@ -27,19 +27,19 @@ dag = DAG(
         'leads_dag',
         default_args=default_args,
         schedule_interval=timedelta(days=1)
-        )
+)
 
 get_leads = PythonOperator(
-        task_id='get_leads',
-        python_callable=store_leads,
-        dag=dag
-        )
+    task_id='get_leads',
+    python_callable=store_leads,
+    dag=dag
+)
 
 send_leads = PythonOperator(
-        task_id='send_leads',
-        python_callable=leads_sender,
-        dag=dag
-        )
+    task_id='send_leads',
+    python_callable=leads_sender,
+    dag=dag
+)
 
 cleanup = PythonOperator(
     task_id = 'clean_up_leads',
