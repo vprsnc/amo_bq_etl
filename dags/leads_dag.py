@@ -29,7 +29,7 @@ dag = DAG(
         schedule_interval=timedelta(days=1)
         )
 
-get_leads = PythonOperator
+get_leads = PythonOperator(
         task_id='get_leads',
         python_callable=store_leads,
         dag=dag
