@@ -25,7 +25,7 @@ class StatusChanges:
              client_secret=client_secret,
              subdomain=subdomain,
              redirect_url=redirect_url,
-             storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens/")
+             storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens/events/")
              )
 
          code = os.getenv("CODE_2")
