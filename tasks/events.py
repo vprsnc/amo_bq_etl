@@ -32,7 +32,8 @@ class StatusChanges:
 
          if code:
               tokens.default_token_manager.init(code)
-     
+              logger.debug("Access token has been used!")
+
          _session.mount("https://", HTTPAdapter(max_retries=5))
      
          start = time.time()
