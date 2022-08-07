@@ -8,7 +8,7 @@ from loguru import logger
 
 def leads_sender():
 
-    leads = pd.read_csv("./temp_data/leads.csv")
+    leads = pd.read_csv("/home/analytics/OddJob/dags/temp_data/leads.csv")
 
     client = bq.Client()
 
@@ -25,7 +25,7 @@ def leads_sender():
 
 def status_changes_sender():
 
-    events = pd.read_csv("./temp_data/status_changes.csv")
+    events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/status_changes.csv")
 
     client = bq.Client()
 
