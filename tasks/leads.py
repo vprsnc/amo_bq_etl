@@ -78,7 +78,7 @@ def get_leads(now):
 
     return leads_dicts
 
-def parse_leads(now):
+def parse_leads(leads):
 
     df = pd.DataFrame(leads)
 
