@@ -87,9 +87,9 @@ class StatusChanges:
 
          df = parse_events(events)
 
-         df.to_csv("./temp_data/status_changes.csv", index=False)
+         df.to_csv("/home/analytics/dags/temp_data/status_changes.csv", index=False)
 
 
      def cleanup_events():
 
-         os.remove("./temp_data/events.csv")
+         os.remove("/home/analytics/dags/temp_data/status_changes.csv")
