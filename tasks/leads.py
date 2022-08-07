@@ -45,6 +45,7 @@ def get_leads(now):
     logger.info(f"Downloaded {len(leads)} in {end-start} seconds")
 
     leads_dicts = []
+    counter = 0
     for lead in leads:
         leads_dicts.append(lead.__dict__['_data'])
         try:
@@ -60,6 +61,7 @@ def get_leads(now):
             leads_dicts[counter]["package"] = lead.paket.__dict__["value"]
         except AttributeError:
             leads_dicts[counter]["package"] = ""
+        counter += 1
 
     custom_fields_needed = [
         "Дата прихода обращения", "utm_source", "utm_medium", "utm_campaign", 
