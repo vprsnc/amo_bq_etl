@@ -8,6 +8,40 @@ from loguru import logger
 
 def leads_sender():
 
+    schema = [
+        {'name': 'id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
+        {'name': 'name', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'price', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'responsible_user_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'group_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'status_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'pipeline_id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
+        {'name': 'loss_reason_id', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'created_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'updated_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'created_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
+        {'name': 'updated_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
+        {'name': 'closet_at', 'type': 'TIMESTAMP', 'mode': 'NULLABLE'},
+        {'name': 'closest_task_at', 'type': 'FLOAT', 'mode': 'NULLABLE'},
+        {'name': 'is_deleted', 'type': 'BOOLEAN', 'mode': 'NULLABLE'},
+        {'name': 'score', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'account_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'labor_cost', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'traffic_type', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'city', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'resource', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'package', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_source', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_medium', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_campaign', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_term', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_content', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_hueisment', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_campaign_2', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'utm_term_2', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'data_obrasheniya', 'type': 'INTEGER', 'mode': 'NULLABLE'}
+    ]
+
     leads = pd.read_csv("/home/analytics/OddJob/dags/temp_data/leads.csv")
 
     client = bq.Client()
@@ -19,7 +53,8 @@ def leads_sender():
     leads["closed_at"]  = pd.to_datetime(leads["closed_at"])
 
     leads.to_gbq(
-        "franchise_oddjob.dw_amocrm_fr_leads", if_exists="append"
+        "franchise_oddjob.dw_amocrm_fr_leads", if_exists="append",
+        table_schema=schema
     )
 
     end = time.time()
