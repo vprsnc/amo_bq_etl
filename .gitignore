@@ -3,4 +3,5 @@ tokens/
 __pycahe__/
 tasks/__pycache__/
 dags/__pycache__/
+dags/temp_data/
 *.pyc
