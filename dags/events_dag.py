@@ -8,7 +8,7 @@ from airflow.utils.dates import days_ago
 sys.path.insert(0, "/home/analytics/OddJob/tasks")
 sys.path.insert(0, "/home/analytics/OddJob")
 
-from event import get_events, store_events, cleanup_events
+from events import get_events, store_events, cleanup_events
 from senders import events_sender
 
 
