@@ -64,6 +64,21 @@ def leads_sender():
 
 def status_changes_sender():
 
+    schema = [
+        {'name': 'id', 'type': 'STRING', 'mode': 'REQUIRED'},
+        {'name': 'type', 'type': 'STRING', 'mode': 'REQUIRED'},
+        {'name': 'entity_id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
+        {'name': 'entity_type', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'created_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'created_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
+        {'name': 'account_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_before', 'type': 'INTEGER', 'mode':'NULLABLE'},
+        {'name': 'id_pipeline_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_after', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
+    ]
+
     events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/status_changes.csv")
 
     events["created_at"] = pd.to_datetime(events["created_at"])
@@ -75,7 +90,8 @@ def status_changes_sender():
     start = time.time()
 
     events.to_gbq(
-    "franchise_oddjob.dw_amocrm_fr_events", if_exists="append"
+        "franchise_oddjob.dw_amocrm_fr_events", if_exists="append",
+        table_schema=schema
     )
 
     end = time.time()

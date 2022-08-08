@@ -8,7 +8,7 @@ from airflow.utils.dates import days_ago
 sys.path.insert(0, "/home/analytics/OddJob/tasks")
 sys.path.insert(0, "/home/analytics/OddJob")
 
-from events import StatusChanges
+from status_changes import get_events, store_events, cleanup_events
 from senders import status_changes_sender
 
 
@@ -31,7 +31,7 @@ dag = DAG(
 
 get_status_changes = PythonOperator(
         task_id='get_status_changes',
-        python_callable=StatusChanges.store_events,
+        python_callable=store_events,
         dag=dag
         )
 
@@ -43,7 +43,7 @@ send_status_changes = PythonOperator(
 
 cleanup = PythonOperator(
     task_id='clean_up_status_changes',
-    python_callable=StatusChanges.cleanup_events,
+    python_callable=cleanup_events,
     dag=dag
 )
 
