@@ -25,20 +25,27 @@ def get_leads(now):
         storage=tokens.FileTokensStorage(directory_path="/home/analytics/OddJob/tokens/leads/")
     )
 
+    # code should be injected in the env if there's no refresh code in tokens folder,
+    # e.g. when utilising the new env.
     code = os.getenv("CODE")
 
     if code:
         tokens.default_token_manager.init(code)
         logger.debug("Access token has been used!")
 
+    # Incresing the amount of tries in the requests library
     _session.mount("https://", HTTPAdapter(max_retries=5))
 
     start = time.time()
 
-    leads = list(Lead.objects.filter(
+    # leads = list(Lead.objects.filter(
         
-        filters=[filters.DateRangeFilter("updated_at")(now-timedelta(days=1), now)]
-    ))
+    #     filters=[filters.DateRangeFilter("updated_at")(now-timedelta(days=1), now)]
+    # ))
+
+    # TODO as soon as DB grows, we need to return back to the old way of downloading leads
+    # per 24 hr (ABOVE)
+    leads = list(Lead.objects.all())
 
     end = time.time()
 
