@@ -54,7 +54,7 @@ def leads_sender():
 
     leads.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_leads", if_exists="replace",
-        table_schema=schema
+        # table_schema=schema
     )
 
     end = time.time()
@@ -92,6 +92,39 @@ def status_changes_sender():
     events.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_events", if_exists="append",
         table_schema=schema
+    )
+
+    end = time.time()
+
+    logger.info(f"Sent {len(events)} in {end-start} seconds.")
+
+
+def events_sender():
+
+    schema = [
+        {'name': 'id', 'type': 'STRING', 'mode': 'REQUIRED'},
+        {'name': 'type', 'type': 'STRING', 'mode': 'REQUIRED'},
+        {'name': 'entity_id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
+        {'name': 'entity_type', 'type': 'STRING', 'mode': 'NULLABLE'},
+        {'name': 'created_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'created_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
+        {'name': 'account_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_before', 'type': 'INTEGER', 'mode':'NULLABLE'},
+        {'name': 'id_pipeline_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_status_after', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+        {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
+    ]
+
+    events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/events.csv")
+
+    client = bq.Client()
+
+    start = time.time()
+
+    events.to_gbq(
+        "franchise_oddjob.dw_amocrm_fr_events", if_exists="replace",
+        # table_schema=schema
     )
 
     end = time.time()
