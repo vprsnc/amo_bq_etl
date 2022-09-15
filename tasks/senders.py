@@ -85,6 +85,7 @@ def status_changes_sender():
     events["updated_at"] = pd.to_datetime(events["updated_at"])
     events["closed_at"]  = pd.to_datetime(events["closed_at"])
 
+
     client = bq.Client()
 
     start = time.time()
@@ -116,7 +117,7 @@ def events_sender():
         {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     ]
 
-    events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/events.csv")
+    events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/evens.csv")
 
     client = bq.Client()
 

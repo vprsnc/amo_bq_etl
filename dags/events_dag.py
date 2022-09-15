@@ -11,7 +11,6 @@ sys.path.insert(0, "/home/analytics/OddJob")
 from events import get_events, store_events, cleanup_events
 from senders import events_sender
 
-
 default_args = {
         'owner': 'airflow',
         'depends_on_past': False,
