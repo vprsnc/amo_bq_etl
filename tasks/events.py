@@ -37,7 +37,7 @@ def parse_events(events):
 
 
 def store_events():
-    now - datetime.now
+    now = datetime.now
     events = get_events(now)
     df = parse_events(events)
     df.to_csv(
