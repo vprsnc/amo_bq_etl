@@ -6,8 +6,8 @@ import datetime
 
 from loguru import logger
 
-from tasks.leads import store_leads
-from tasks.senders import leads_sender
+from leads import store_leads
+from senders import leads_sender
 
 
 def main():
