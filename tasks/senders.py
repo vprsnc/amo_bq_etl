@@ -117,7 +117,7 @@ def events_sender():
         {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     ]
 
-    events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/evens.csv")
+    events = pd.read_csv("../temp_data/events.csv")
 
     client = bq.Client()
 
