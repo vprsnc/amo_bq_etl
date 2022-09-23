@@ -12,7 +12,7 @@ from senders import leads_sender
 
 
 def main():
-    logger.add("$HOME/leads.log", backtrace=True, rotation="500 MB")
+    logger.add("~/logs/leads.log", backtrace=True, rotation="500 MB")
     store_leads()
     now = datetime.datetime.now()
     logger.info(f"Leads downloaded successfully at {now}")

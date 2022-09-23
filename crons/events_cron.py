@@ -12,7 +12,7 @@ from senders import events_sender
 
 
 def main():
-    logger.add("$HOME/events.log", backtrace=True, rotation="500 MB")
+    logger.add("~/logs/events.log", backtrace=True, rotation="500 MB")
     store_events()
     now = datetime.datetime.now()
     logger.info(f"Events downloaded successfully at {now}")
