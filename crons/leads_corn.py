@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath("../tasks"))
+
 import datetime
 
 from loguru import logger
