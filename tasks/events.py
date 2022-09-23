@@ -1,5 +1,6 @@
 import os
 from datetime import datetime, time
+from loguru import logger
 
 from google.oauth2 import service_account
 
@@ -7,6 +8,8 @@ import gspread
 import gspread_dataframe as gd
 import pandas as pd
 
+
+logger.add("~/logs/events.log", backtrace=True, rotation="500 MB")
 
 def get_events(now):
     gc = gspread.service_account(filename="../tokens/yet-another-python-c9430ad455a2.json")
@@ -17,6 +20,8 @@ def get_events(now):
 
     
     events= gsheet.worksheet("events").get_all_records()
+
+    logger.info(f"{len(events)} fetched from Google sheet at {now}")
     return events
 
 
@@ -45,5 +50,3 @@ def store_events():
         index=False
     )
 
-def cleanup_events():
-    os.remove("../temp_data/events.csv")

@@ -10,6 +10,10 @@ from amocrm.v2.interaction import _session
 
 from models import Lead
 
+
+logger.add("~/logs/leads.log", backtrace=True, rotation="500 MB")
+
+
 def get_leads(now):
 
     client_id = os.getenv("AMO_CLIENT_ID")
@@ -116,9 +120,6 @@ def store_leads():
     leads = get_leads(now)
 
     df = parse_leads(leads)
-
+    logger.info(f"{len(df)} rows downloaded from Amo")
+    
     df.to_csv("../temp_data/leads.csv", index=False)
-
-# def cleanup_leads():
-
-#     os.remove("/home/analytics/OddJob/dags/temp_data/leads.csv")
