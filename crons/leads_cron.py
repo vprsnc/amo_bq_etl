@@ -11,8 +11,9 @@ from leads import store_leads
 from senders import leads_sender
 
 
+home = os.getenv("HOME")
+logger.add(f"{home}/logs/leads.log", backtrace=True, rotation="500 kb")
 def main():
-    logger.add("~/logs/leads.log", backtrace=True, rotation="500 MB")
     store_leads()
     now = datetime.datetime.now()
     logger.info(f"Leads downloaded successfully at {now}")

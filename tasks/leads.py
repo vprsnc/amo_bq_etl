@@ -11,7 +11,8 @@ from amocrm.v2.interaction import _session
 from models import Lead
 
 
-logger.add("~/logs/leads.log", backtrace=True, rotation="500 MB")
+home = os.getenv("HOME")
+logger.add(f"{home}/logs/leads.log", backtrace=True, rotation="500 kb")
 
 
 def get_leads(now):

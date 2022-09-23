@@ -6,8 +6,12 @@ import pandas as pd
 
 from loguru import logger
 
+home = os.getenv("HOME")
+
 
 def leads_sender():
+
+    logger.add(f"{home}/logs/leads.log", backtrace=True, rotation="500 kb")
 
     schema = [
         {'name': 'id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
@@ -102,8 +106,7 @@ def status_changes_sender():
 
 
 def events_sender():
-
-    logger.add("../logs/events.log", backtrace=True, rotation="500 kb")
+    logger.add(f"{home}/logs/events.log", backtrace=True, rotation="500 kb")
     schema = [
         {'name': 'id', 'type': 'STRING', 'mode': 'REQUIRED'},
         {'name': 'type', 'type': 'STRING', 'mode': 'REQUIRED'},

@@ -8,7 +8,8 @@ import gspread
 import pandas as pd
 
 
-logger.add("~/logs/events.log", backtrace=True, rotation="500 MB")
+home = os.getenv("HOME")
+logger.add(f"{home}/logs/events.log", backtrace=True, rotation="500 kb")
 
 def get_events(now):
     gc = gspread.service_account(filename="../tokens/yet-another-python-c9430ad455a2.json")

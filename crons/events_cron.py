@@ -10,9 +10,10 @@ from loguru import logger
 from events import store_events
 from senders import events_sender
 
+home = os.getenv("HOME")
+logger.add(f"{home}/logs/events.log", backtrace=True, rotation="500 kb")
 
 def main():
-    logger.add("~/logs/events.log", backtrace=True, rotation="500 MB")
     store_events()
     now = datetime.datetime.now()
     logger.info(f"Events downloaded successfully at {now}")
