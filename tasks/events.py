@@ -5,7 +5,6 @@ from loguru import logger
 from google.oauth2 import service_account
 
 import gspread
-import gspread_dataframe as gd
 import pandas as pd
 
 
@@ -19,7 +18,7 @@ def get_events(now):
    )
 
     
-    events= gsheet.worksheet("events").get_all_records()
+    events = gsheet.worksheet("events").get_all_records()
 
     logger.info(f"{len(events)} fetched from Google sheet at {now}")
     return events
@@ -39,6 +38,7 @@ def parse_events(events):
             "Дата создания": "date_created"
            }, axis=1, inplace=True
        )
+    return events_df
 
 
 def store_events():
