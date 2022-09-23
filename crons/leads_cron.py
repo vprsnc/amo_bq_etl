@@ -15,11 +15,11 @@ def main():
     logger.add("$HOME/leads.log", backtrace=True, rotation="500 MB")
     store_leads()
     now = datetime.datetime.now()
-    logger.info("Leads downloaded successfully at {now}", feature="f-strings")
+    logger.info(f"Leads downloaded successfully at {now}")
 
     leads_sender()
     now = datetime.datetime.now()
-    logger.info("Leads sent successfully at {now}", feature="f-strings")
+    logger.info(f"Leads sent successfully at {now}")
 
 
 if __name__ == "__main__":

@@ -15,11 +15,11 @@ def main():
     logger.add("$HOME/events.log", backtrace=True, rotation="500 MB")
     store_events()
     now = datetime.datetime.now()
-    logger.info("Events downloaded successfully at {now}", feature="f-strings")
+    logger.info(f"Events downloaded successfully at {now}")
 
     events_sender()
     now = datetime.datetime.now()
-    logger.info("events sent successfully at {now}", feature="f-strings")
+    logger.info(f"Events sent successfully at {now}")
 
 
 if __name__ == "__main__":
