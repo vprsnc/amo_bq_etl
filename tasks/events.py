@@ -21,7 +21,7 @@ def get_events(now):
 
 
 def parse_events(events):
-    events_df = pd.DataFrame(events_raw)
+    events_df = pd.DataFrame(events)
     events_df.rename(
         {
             "ID сущности": "lead_id",
