@@ -2,8 +2,8 @@ import datetime
 
 from loguru import logger
 
-from tasks.events import store_events
-from tasks.senders import events_sender
+from ..tasks.events import store_events
+from ..tasks.senders import events_sender
 
 
 def main():
