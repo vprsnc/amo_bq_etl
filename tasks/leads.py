@@ -117,8 +117,8 @@ def store_leads():
 
     df = parse_leads(leads)
 
-    df.to_csv("/home/analytics/OddJob/dags/temp_data/leads.csv", index=False)
+    df.to_csv("../temp_data/leads.csv", index=False)
 
-def cleanup_leads():
+# def cleanup_leads():
 
-    os.remove("/home/analytics/OddJob/dags/temp_data/leads.csv")
+#     os.remove("/home/analytics/OddJob/dags/temp_data/leads.csv")

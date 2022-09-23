@@ -41,9 +41,9 @@ def store_events():
     events = get_events(now)
     df = parse_events(events)
     df.to_csv(
-        "home/analytics/OddJob/dags/temp_data/events.csv",
+        "../temp_data/events.csv",
         index=False
     )
 
 def cleanup_events():
-    os.remove("home/analytics/OddJob/dags/temp_data/events.csv")
+    os.remove("../temp_data/events.csv")
