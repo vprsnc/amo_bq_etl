@@ -47,7 +47,7 @@ def leads_sender():
         {'name': 'data_obrasheniya', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     ]
 
-    leads = pd.read_csv("/home/analytics/OddJob/dags/temp_data/leads.csv")
+    leads = pd.read_csv("../temp_data/leads.csv")
 
     client = bq.Client()
 
