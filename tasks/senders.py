@@ -53,9 +53,9 @@ def leads_sender():
 
     start = time.time()
 
-    leads["created_at"] = pd.to_datetime(leads["created_at"])
-    leads["updated_at"] = pd.to_datetime(leads["updated_at"])
-    leads["closed_at"]  = pd.to_datetime(leads["closed_at"])
+    # leads["created_at"] = pd.to_datetime(leads["created_at"])
+    # leads["updated_at"] = pd.to_datetime(leads["updated_at"])
+    # leads["closed_at"]  = pd.to_datetime(leads["closed_at"])
 
     leads.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_leads", if_exists="replace",
