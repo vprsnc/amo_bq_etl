@@ -82,18 +82,25 @@ def get_leads(now):
         except AttributeError:
             leads_dicts[counter]["gender"] = ""
         try:
+            leads_dicts[counter]["kev_ot"] = lead.kev_ot
+        except AttributeError:
+            leads_dicts[counter]["kev_ot"] = ""
+        try:
             leads_dicts[counter]["type"] = lead.type.__dict__["value"]
         except AttributeError:
             leads_dicts[counter]["type"] = ""
         try:
+            leads_dicts[counter]["agreement_no"] = lead.nomer_dogovora
+        except AttributeError:
+            leads_dicts[counter]["agreement_no"] = ""
+        try:
             leads_dicts[counter]["installment_plan"] = lead.rassrochka.__dict__["value"]
         except AttributeError:
             leads_dicts[counter]["installment_plan"] = ""
-
-        leads_dicts[counter]["kev_ot"] = lead.kev_ot
-        leads_dicts[counter]["agreement_no"] = lead.nomer_dogovora
-        leads_dicts[counter]["presale"] = lead.presale
-
+        try:
+            leads_dicts[counter]["presale"] = str(lead.presale)
+        except AttributeError:
+            leads_dicts[counter]["isntallment_plan"] = ""
         tags_list = lead.tags.__dict__["_tags"]
         tag_str = ""
         for tag in tags_list:
@@ -102,8 +109,8 @@ def get_leads(now):
             else:
                 tag_str += tag["name"]
         leads_dicts[counter]["tags"] = tag_str
-    counter += 1
-
+        counter += 1
+    
     custom_fields_needed = [
         "Дата прихода обращения", "utm_source", "utm_medium", "utm_campaign", 
         "utm_term", "utm_content", "utm_hueisment", "utm_campaign (2)", 

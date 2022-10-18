@@ -57,8 +57,6 @@ def leads_sender():
     leads["updated_at"] = pd.to_datetime(leads["updated_at"])
     leads["closed_at"]  = pd.to_datetime(leads["closed_at"])
 
-    leads = leads.astype("str")
-
     leads.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_leads", if_exists="replace",
         # table_schema=schema
