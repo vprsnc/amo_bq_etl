@@ -47,7 +47,7 @@ def leads_sender():
     #     {'name': 'data_obrasheniya', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     # ]
 
-    leads = pd.read_csv("../temp_data/leads.csv")
+    leads = pd.read_csv("../temp_data/leads.csv", low_memory=False)
 
     client = bq.Client()
 
@@ -57,7 +57,7 @@ def leads_sender():
     # leads["updated_at"] = pd.to_datetime(leads["updated_at"])
     # leads["closed_at"]  = pd.to_datetime(leads["closed_at"])
 
-    leads = leads.astype("str")
+    # leads = leads.astype("str")
 
     leads.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_leads", if_exists="replace",
