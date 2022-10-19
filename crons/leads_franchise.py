@@ -14,11 +14,11 @@ from senders import leads_sender
 home = os.getenv("HOME")
 logger.add(f"{home}/logs/leads.log", backtrace=True, rotation="500 kb")
 def main():
-    store_leads()
+    store_leads(amo="franchize")
     now = datetime.datetime.now()
     logger.info(f"Leads downloaded successfully at {now}")
 
-    leads_sender()
+    leads_sender(amo="franchize")
     now = datetime.datetime.now()
     logger.info(f"Leads sent successfully at {now}")
 

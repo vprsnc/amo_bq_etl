@@ -9,9 +9,9 @@ from loguru import logger
 home = os.getenv("HOME")
 
 
-def leads_sender():
+def leads_sender(amo):
 
-    logger.add(f"{home}/logs/leads.log", backtrace=True, rotation="500 kb")
+    logger.add(f"{home}/logs/leads_{amo}.log", backtrace=True, rotation="500 kb")
 
     # schema = [
     #     {'name': 'id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
@@ -47,7 +47,7 @@ def leads_sender():
     #     {'name': 'data_obrasheniya', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     # ]
 
-    leads = pd.read_csv("../temp_data/leads.csv", low_memory=False)
+    leads = pd.read_csv(f"../temp_data/leads_{amo}.csv", low_memory=False)
 
     client = bq.Client()
 
@@ -59,8 +59,15 @@ def leads_sender():
 
     # leads = leads.astype("str")
 
+    if amo == "franchize":
+        dw0 = "franchise"
+        dw1 = "fr"
+    elif amo == "partner":
+        #TODO the name of the dw
+        pass
+
     leads.to_gbq(
-        "franchise_oddjob.dw_amocrm_fr_leads", if_exists="replace",
+        f"{dw0}_oddjob.dw_amocrm_{dw1}_leads", if_exists="replace",
         # table_schema=schema
     )
 
