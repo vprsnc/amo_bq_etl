@@ -136,7 +136,7 @@ def get_leads(now, amo):
 def parse_leads(leads, amo):
 
 
-         df = pd.DataFrame(leads)
+    df = pd.DataFrame(leads)
      
     if amo = "franchize":
 
