@@ -138,7 +138,7 @@ def parse_leads(leads, amo):
 
     df = pd.DataFrame(leads)
      
-    if amo = "franchize":
+    if amo == "franchize":
 
          df ["data_obrasheniya"] = df["Дата прихода обращения"].fillna(0).astype("int")
      
@@ -154,7 +154,7 @@ def parse_leads(leads, amo):
              "price": "budget"
              }, axis=1, inplace=True)
 
-    elif amo = "partner":
+    elif amo == "partner":
 
     df["created_at"] = pd.to_datetime(df["created_at"], unit="s")
     df["updated_at"] = pd.to_datetime(df["updated_at"], unit="s")
