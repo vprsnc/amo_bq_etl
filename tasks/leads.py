@@ -155,6 +155,7 @@ def parse_leads(leads, amo):
              }, axis=1, inplace=True)
 
     elif amo == "partner":
+        pass
 
     df["created_at"] = pd.to_datetime(df["created_at"], unit="s")
     df["updated_at"] = pd.to_datetime(df["updated_at"], unit="s")
