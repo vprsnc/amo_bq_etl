@@ -47,7 +47,7 @@ def leads_sender(amo):
     #     {'name': 'data_obrasheniya', 'type': 'INTEGER', 'mode': 'NULLABLE'}
     # ]
 
-    leads = pd.read_csv(f"../temp_data/leads_{amo}.csv", low_memory=False)
+    leads = pd.read_csv(f"../temp_data/{amo}_leads.csv", low_memory=False)
 
     client = bq.Client()
 
