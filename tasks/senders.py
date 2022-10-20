@@ -63,8 +63,8 @@ def leads_sender(amo):
         dw0 = "franchise"
         dw1 = "fr"
     elif amo == "partner":
-        #TODO the name of the dw
-        pass
+        dw0 = "partner"
+        dw1 = "ptr"
 
     leads.to_gbq(
         f"{dw0}_oddjob.dw_amocrm_{dw1}_leads", if_exists="replace",
