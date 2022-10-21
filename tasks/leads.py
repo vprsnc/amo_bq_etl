@@ -27,7 +27,7 @@ def get_leads(now, amo):
         client_secret=client_secret,
         subdomain=subdomain,
         redirect_url=redirect_url,
-        storage=tokens.FileTokensStorage(directory_path=f"/home/analytics/OddJob/tokens/leads_{amo}/")
+        storage=tokens.FileTokensStorage(directory_path=f"/home/analytics/OddJob/tokens/leads_{amo}")
     )
 
     # code should be injected in the env if there's no refresh code in tokens folder,
