@@ -65,6 +65,9 @@ def leads_sender(amo):
     elif amo == "partner":
         dw0 = "partner"
         dw1 = "ptr"
+    elif amo == "accelerator":
+        dw0 = "accelerator"
+        dw1 = "acl"
 
     leads.to_gbq(
         f"{dw0}_oddjob.dw_amocrm_{dw1}_leads", if_exists="replace",
