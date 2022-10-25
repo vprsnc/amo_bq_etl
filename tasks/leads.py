@@ -117,6 +117,9 @@ def get_leads(now, amo):
         elif amo == "partner":
             pass
         
+        elif amo == "accelerator":
+            pass
+
         custom_fields_needed = [
             "Дата прихода обращения", "utm_source", "utm_medium", "utm_campaign", 
             "utm_term", "utm_content", "utm_hueisment", "utm_campaign (2)", 
@@ -155,6 +158,9 @@ def parse_leads(leads, amo):
              }, axis=1, inplace=True)
 
     elif amo == "partner":
+        pass
+
+    elif amo == "accelerator":
         pass
 
     df["created_at"] = pd.to_datetime(df["created_at"], unit="s")
