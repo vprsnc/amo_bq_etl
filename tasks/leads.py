@@ -103,7 +103,15 @@ def get_leads(now, amo):
             try:
                 leads_dicts[counter]["presale"] = str(lead.presale)
             except AttributeError:
-                leads_dicts[counter]["isntallment_plan"] = ""
+                leads_dicts[counter]["presale"] = ""
+            try:
+                leads_dicts[counter]["email"] = str(lead.e_mail)
+            except AttributeError:
+                leads_dicts[counter]["email"] = ""
+            try:
+                leads_dicts[counter]["phone"] = str(lead.telefon)
+            except AttributeError:
+                leads_dicts[counter]["phone"] = ""
             tags_list = lead.tags.__dict__["_tags"]
             tag_str = ""
             for tag in tags_list:
