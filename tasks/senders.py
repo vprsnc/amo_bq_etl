@@ -98,9 +98,9 @@ def status_changes_sender():
 
     events = pd.read_csv("/home/analytics/OddJob/dags/temp_data/status_changes.csv")
 
-    events["created_at"] = pd.to_datetime(events["created_at"])
-    events["updated_at"] = pd.to_datetime(events["updated_at"])
-    events["closed_at"]  = pd.to_datetime(events["closed_at"])
+    # events["created_at"] = pd.to_datetime(events["created_at"])
+    # events["updated_at"] = pd.to_datetime(events["updated_at"])
+    # events["closed_at"]  = pd.to_datetime(events["closed_at"])
 
 
     client = bq.Client()
@@ -108,7 +108,7 @@ def status_changes_sender():
     start = time.time()
 
     events.to_gbq(
-        "franchise_oddjob.dw_amocrm_fr_events", if_exists="append",
+        "franchise_oddjob.dw_amocrm_fr_events", if_exists="replace",
         table_schema=schema
     )
 
@@ -119,20 +119,20 @@ def status_changes_sender():
 
 def events_sender():
     logger.add(f"{home}/logs/events.log", backtrace=True, rotation="500 kb")
-    schema = [
-        {'name': 'id', 'type': 'STRING', 'mode': 'REQUIRED'},
-        {'name': 'type', 'type': 'STRING', 'mode': 'REQUIRED'},
-        {'name': 'entity_id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
-        {'name': 'entity_type', 'type': 'STRING', 'mode': 'NULLABLE'},
-        {'name': 'created_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
-        {'name': 'created_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
-        {'name': 'account_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
-        {'name': 'id_status_before', 'type': 'INTEGER', 'mode':'NULLABLE'},
-        {'name': 'id_pipeline_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
-        {'name': 'id_status_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
-        {'name': 'id_status_after', 'type': 'INTEGER', 'mode': 'NULLABLE'},
-        {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
-    ]
+    # schema = [
+    #     {'name': 'id', 'type': 'STRING', 'mode': 'REQUIRED'},
+    #     {'name': 'type', 'type': 'STRING', 'mode': 'REQUIRED'},
+    #     {'name': 'entity_id', 'type': 'INTEGER', 'mode': 'REQUIRED'},
+    #     {'name': 'entity_type', 'type': 'STRING', 'mode': 'NULLABLE'},
+    #     {'name': 'created_by', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+    #     {'name': 'created_at', 'type': 'TIMESTAMP', 'mode': 'REQUIRED'},
+    #     {'name': 'account_id', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+    #     {'name': 'id_status_before', 'type': 'INTEGER', 'mode':'NULLABLE'},
+    #     {'name': 'id_pipeline_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+    #     {'name': 'id_status_before', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+    #     {'name': 'id_status_after', 'type': 'INTEGER', 'mode': 'NULLABLE'},
+    #     {'name': 'id_pipeline_after', 'type': 'INTEGER', 'mode': 'NULLABLE'}
+    # ]
 
     events = pd.read_csv("../temp_data/events.csv")
 
