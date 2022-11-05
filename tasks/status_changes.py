@@ -6,7 +6,8 @@ from requests.adapters import HTTPAdapter
 from loguru import logger
 import pandas as pd
 
-from amocrm.v2 import tokens, filters, Event
+from amocrm.v2 import tokens, filters
+from amocrm.v2 import Event
 from amocrm.v2.interaction import _session
 
 
