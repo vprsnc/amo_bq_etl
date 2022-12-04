@@ -109,7 +109,7 @@ def status_changes_sender():
 
     events.to_gbq(
         "franchise_oddjob.dw_amocrm_fr_events", if_exists="replace",
-        table_schema=schema
+        # table_schema=schema
     )
 
     end = time.time()
